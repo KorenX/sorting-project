@@ -15,7 +15,7 @@
 */
 
 template <typename T, size_t max_size>
-namespace MinHeap
+class MinHeap
 {
 public:
     /**
@@ -45,7 +45,7 @@ private:
      * 
      * @returns true if the function was successful, false otherwise.
      */
-    bool MaxHeapify(size_t uneven_head);
+    bool MinHeapify(size_t uneven_head);
 
     T m_values[max_size];
     size_t m_values_amount;
