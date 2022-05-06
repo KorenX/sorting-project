@@ -82,11 +82,28 @@ bool MinHeap<T, max_size>::MinHeapify(size_t uneven_head)
 
     if (smallest_index != uneven_head)
     {
-        T swap_temp = m_values[uneven_head];
-        m_values[uneven_head] = m_values[smallest_index];
-        m_values[smallest_index] = swap_temp;
+        if (!SwapValues(smallest_index, uneven_head))
+        {
+            return false;
+        }
+
         return MinHeapify(smallest_index);
     }
+
+    return true;
+}
+
+template <typename T, size_t max_size>
+bool MinHeap<T, max_size>::SwapValues(size_t index1, size_t index2)
+{
+    if (index1 >= m_values_amount || index2 >= m_values_amount)
+    {
+        return false;
+    }
+
+    T swap_temp = m_values[index1];
+    m_values[index1] = m_values[index2];
+    m_values[index2] = swap_temp;
 
     return true;
 }

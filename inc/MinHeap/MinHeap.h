@@ -49,6 +49,16 @@ private:
      */
     bool MinHeapify(size_t uneven_head);
 
+    /**
+     * This function swaps two of the array values with each other
+     *
+     * @param index1 - the first index, will be swapped with index2
+     * @param index2 - the second index, will be swapped with index1
+     *
+     * @returns true if the function was successful, false otherwise.
+     */
+    bool SwapValues(size_t index1, size_t index2);
+
     T m_values[max_size];
     size_t m_values_amount;
     bool m_initialized;
