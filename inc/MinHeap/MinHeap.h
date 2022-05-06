@@ -18,6 +18,8 @@ template <typename T, size_t max_size>
 class MinHeap
 {
 public:
+    MinHeap() : m_values_amount(0), m_initialized(false) {}
+
     /**
      * This function initializes the class from an array of T values
      * 
@@ -49,4 +51,5 @@ private:
 
     T m_values[max_size];
     size_t m_values_amount;
+    bool m_initialized;
 };
