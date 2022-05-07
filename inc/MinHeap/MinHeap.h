@@ -5,6 +5,9 @@
 #include <stddef.h>
 #include <stdio.h>
 
+#define LEFT_CHILD(head) (head<<1)
+#define RIGHT_CHILD(head) ((head<<1)+1)
+
 /*
     An implementation of MinHeap for this project's use.
     typename T - the values held in the inner array. must have compare functions implemented
@@ -44,7 +47,12 @@ public:
      */
     bool ExtractMin(T& o_min);
 
+#ifdef TESTING_BUILD
+public:
+#else
 private:
+#endif
+
     /**
      * This function reorganizes the heap downwards, assuming that the trees beneath the head are organized
      * 

@@ -68,8 +68,8 @@ template <typename T, size_t max_size>
 bool MinHeap<T, max_size>::MinHeapify(size_t uneven_head)
 {
     size_t smallest_index = uneven_head;
-    size_t left_child_index = uneven_head * 2;
-    size_t right_child_index = left_child_index + 1;
+    size_t left_child_index = LEFT_CHILD(uneven_head);
+    size_t right_child_index = RIGHT_CHILD(uneven_head);
 
     // Check integer overflow
     if (left_child_index < uneven_head || right_child_index < uneven_head)
