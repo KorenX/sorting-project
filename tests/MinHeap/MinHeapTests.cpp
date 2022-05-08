@@ -45,6 +45,8 @@ size_t GetMinimumIndex(T* array, size_t count)
 }
 
 void RunMinHeapTests();
+bool MinHeapTest_IsEmptyBasicUse();
+bool MinHeapTest_IsFullBasicUse();
 bool MinHeapTest_InitialHeadIsSmallest();
 bool MinHeapTest_ValuesFitMinHeapStruct();
 bool MinHeapTest_ExtractMinAlwaysRemovesMin();
@@ -58,10 +60,40 @@ int main()
 void RunMinHeapTests()
 {
     srand(time(0));
+    RUN_TEST(MinHeapTest_IsEmptyBasicUse);
+    RUN_TEST(MinHeapTest_IsFullBasicUse);
     RUN_TEST(MinHeapTest_InitialHeadIsSmallest);
     RUN_TEST(MinHeapTest_ValuesFitMinHeapStruct);
     RUN_TEST(MinHeapTest_ExtractMinAlwaysRemovesMin);
     FINISH_RUNNING_TESTS;
+}
+
+bool MinHeapTest_IsEmptyBasicUse()
+{
+    static constexpr size_t ARRAY_SIZE = 10;
+    static constexpr size_t VALUES_CAP = 1000;
+
+    MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
+
+    ASSERT_TRUE(mheap.IsEmpty());
+    TEST_END;
+}
+
+bool MinHeapTest_IsFullBasicUse()
+{
+    static constexpr size_t ARRAY_SIZE = 10;
+    static constexpr size_t VALUES_CAP = 1000;
+
+    int arr[ARRAY_SIZE] = {};
+    for (size_t i = 0; i < ARRAY_SIZE; i++)
+    {
+        arr[i] = rand() % VALUES_CAP;
+    }
+
+    MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
+    ASSERT_TRUE(mheap.BuildMinHeap(arr, ARRAY_SIZE));
+    ASSERT_TRUE(mheap.IsFull());
+    TEST_END;
 }
 
 bool MinHeapTest_InitialHeadIsSmallest()
@@ -134,8 +166,11 @@ bool MinHeapTest_ExtractMinAlwaysRemovesMin()
         
         size_t min_index = GetMinimumIndex(arr, ARRAY_SIZE);
         ASSERT_EQ(min, arr[min_index]);
+        // This makes sure the values will not be the minimum value again
         arr[min_index] = VALUES_CAP;
     }
+
+    ASSERT_TRUE(mheap.IsEmpty());
 
     TEST_END;
 }

@@ -28,7 +28,7 @@ template <typename T, size_t max_size>
 class MinHeap
 {
 public:
-    MinHeap() : m_values_amount(0), m_initialized(false) {}
+    MinHeap() : m_values_amount(0) {}
 
     /**
      * This function initializes the class from an array of T values
@@ -48,6 +48,20 @@ public:
      * @returns true if the function was successful, false otherwise.
      */
     bool ExtractMin(T& o_min);
+
+    /**
+     * This function checks if the MinHeap is empty (has no members)
+     *
+     * @returns true if the MinHeap is empty, false otherwise
+     */
+    bool IsEmpty();
+
+    /**
+     * This function checks if the MinHeap is full (all of the slots a occupied)
+     *
+     * @returns true if the MinHeap is full, false otherwise
+     */
+    bool IsFull();
 
 #ifdef TESTING_BUILD
 public:
@@ -76,7 +90,6 @@ private:
 
     T m_values[max_size];
     size_t m_values_amount;
-    bool m_initialized;
 };
 
 }

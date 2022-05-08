@@ -6,51 +6,40 @@
 template <typename T, size_t max_size>
 bool MinHeap::MinHeap<T, max_size>::BuildMinHeap(T* unsorted_array, size_t values_count)
 {
-    m_initialized = false;
-
     if (unsorted_array == nullptr || values_count > max_size)
     {
-        printf("a\n");
         return false;
     }
 
     for (size_t i = 0; i < values_count; i++)
     {
+        // We don't use memcpy here becasue we want to call copy constructor
         m_values[i] = unsorted_array[i];
     }
 
     m_values_amount = values_count;
     
-    // run for each node except for the last to avoid underflow
+    // Run for each node except for the last to avoid underflow
     for (size_t i = m_values_amount/2; i > 0; i--)
     {
         if (!MinHeapify(i))
         {
-            printf("b 0x%x\n", i);
             return false;
         }
     }
 
     if (!MinHeapify(0))
     {
-        printf("c 0x%x\n", 0);
         return false;
     }
 
-    m_initialized = true;
     return true;
 }
 
 template <typename T, size_t max_size>
 bool MinHeap::MinHeap<T, max_size>::ExtractMin(T& o_min)
 {
-    if (!m_initialized)
-    {
-        return false;
-    }
-
-    // Check if the heap is empty
-    if (m_values_amount == 0)
+    if (IsEmpty())
     {
         return false;
     }
@@ -62,6 +51,18 @@ bool MinHeap::MinHeap<T, max_size>::ExtractMin(T& o_min)
 
     // Fix the heap
     return MinHeapify(0);
+}
+
+template <typename T, size_t max_size>
+bool MinHeap::MinHeap<T, max_size>::IsEmpty()
+{
+    return m_values_amount == 0;
+}
+
+template <typename T, size_t max_size>
+bool MinHeap::MinHeap<T, max_size>::IsFull()
+{
+    return m_values_amount == max_size;
 }
 
 template <typename T, size_t max_size>
