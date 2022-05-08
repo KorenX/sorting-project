@@ -4,7 +4,7 @@
 #include "inc/MinHeap/MinHeap.h"
 
 template <typename T, size_t max_size>
-bool MinHeap<T, max_size>::BuildMinHeap(T* unsorted_array, size_t values_count)
+bool MinHeap::MinHeap<T, max_size>::BuildMinHeap(T* unsorted_array, size_t values_count)
 {
     m_initialized = false;
 
@@ -42,7 +42,7 @@ bool MinHeap<T, max_size>::BuildMinHeap(T* unsorted_array, size_t values_count)
 }
 
 template <typename T, size_t max_size>
-bool MinHeap<T, max_size>::ExtractMin(T& o_min)
+bool MinHeap::MinHeap<T, max_size>::ExtractMin(T& o_min)
 {
     if (!m_initialized)
     {
@@ -65,7 +65,7 @@ bool MinHeap<T, max_size>::ExtractMin(T& o_min)
 }
 
 template <typename T, size_t max_size>
-bool MinHeap<T, max_size>::MinHeapify(size_t uneven_head)
+bool MinHeap::MinHeap<T, max_size>::MinHeapify(size_t uneven_head)
 {
     size_t smallest_index = uneven_head;
     size_t left_child_index = LEFT_CHILD(uneven_head);
@@ -101,7 +101,7 @@ bool MinHeap<T, max_size>::MinHeapify(size_t uneven_head)
 }
 
 template <typename T, size_t max_size>
-bool MinHeap<T, max_size>::SwapValues(size_t index1, size_t index2)
+bool MinHeap::MinHeap<T, max_size>::SwapValues(size_t index1, size_t index2)
 {
     if (index1 >= m_values_amount || index2 >= m_values_amount)
     {

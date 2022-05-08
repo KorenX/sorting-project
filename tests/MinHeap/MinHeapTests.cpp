@@ -75,7 +75,7 @@ bool MinHeapTest_InitialHeadIsSmallest()
         arr[i] = rand() % VALUES_CAP;
     }
 
-    MinHeap<int, ARRAY_SIZE> mheap;
+    MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
     ASSERT_TRUE(mheap.BuildMinHeap(arr, ARRAY_SIZE));
     int min = 0;
     ASSERT_TRUE(mheap.ExtractMin(min));
@@ -95,7 +95,7 @@ bool MinHeapTest_ValuesFitMinHeapStruct()
         arr[i] = rand() % VALUES_CAP;
     }
 
-    MinHeap<int, ARRAY_SIZE> mheap;
+    MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
     ASSERT_TRUE(mheap.BuildMinHeap(arr, ARRAY_SIZE));
     for (size_t i = 0; i < ARRAY_SIZE/2; i++)
     {
@@ -124,7 +124,7 @@ bool MinHeapTest_ExtractMinAlwaysRemovesMin()
         arr[i] = rand() % VALUES_CAP;
     }
 
-    MinHeap<int, ARRAY_SIZE> mheap;
+    MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
     ASSERT_TRUE(mheap.BuildMinHeap(arr, ARRAY_SIZE));
     
     for (size_t i = 0; i < ARRAY_SIZE; i++)

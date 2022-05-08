@@ -21,6 +21,8 @@
     Notice I don't like to work with Exceptions (something I carry from my personal job experience),
     So my code may be a bit unconventional.
 */
+namespace MinHeap
+{
 
 template <typename T, size_t max_size>
 class MinHeap
@@ -77,6 +79,7 @@ private:
     bool m_initialized;
 };
 
+}
 #include "src/MinHeap/MinHeap.hpp"
 
 #endif //__MIN_HEAP_H__
