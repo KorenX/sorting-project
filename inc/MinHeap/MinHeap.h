@@ -77,6 +77,6 @@ private:
     bool m_initialized;
 };
 
-#include "src/MinHeap.hpp"
+#include "src/MinHeap/MinHeap.hpp"
 
 #endif //__MIN_HEAP_H__
