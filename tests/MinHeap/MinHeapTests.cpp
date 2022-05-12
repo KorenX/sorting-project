@@ -1,7 +1,6 @@
 #include "inc/MinHeap/MinHeap.h"
-#include <stdlib.h>
-#include <time.h>
 #include "tests/TestsUtils.h"
+#include <stdlib.h>
 
 template <typename T>
 size_t GetMinimumIndex(T* array, size_t count)
@@ -29,7 +28,6 @@ bool MinHeapTest_ExtractMinAlwaysRemovesMin();
 
 void MinHeapTests()
 {
-    srand(time(0));
     RUN_TEST(MinHeapTest_IsEmptyBasicUse);
     RUN_TEST(MinHeapTest_IsFullBasicUse);
     RUN_RANDOM_TEST(MinHeapTest_InitialHeadIsSmallest, RANDOM_TESTS_AMOUNT);

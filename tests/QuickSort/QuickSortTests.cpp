@@ -1,14 +1,12 @@
 #include "inc/QuickSort/QuickSort.h"
-#include <stdlib.h>
-#include <time.h>
 #include "tests/TestsUtils.h"
+#include <stdlib.h>
 
 bool QuickSortTests_ArrayIsSorted();
 bool QuickSortTests_PartitionGeneralUse();
 
 void QuickSortTests()
 {
-    srand(time(0));
     RUN_RANDOM_TEST(QuickSortTests_ArrayIsSorted, RANDOM_TESTS_AMOUNT)
     RUN_RANDOM_TEST(QuickSortTests_PartitionGeneralUse, RANDOM_TESTS_AMOUNT)
     FINISH_RUNNING_TESTS(QuickSortTests);
