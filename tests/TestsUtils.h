@@ -25,7 +25,11 @@
 #define TEST_FAILED(test_function) printf("test named " # test_function  RED " failed\n" RESET)
 #define TEST_SUCCEEDED(test_function) printf("test named " # test_function  GREEN " succeeded\n" RESET)
 #define RUN_TEST(test_function) if(!test_function()) TEST_FAILED(test_function); else TEST_SUCCEEDED(test_function);
-#define FINISH_RUNNING_TESTS printf("finished running tests\n")
+#define FINISH_RUNNING_TESTS(tests_group) printf("finished running tests " #tests_group "\n")
 
+#define RANDOM_TESTS_AMOUNT 11
+#define RANDOM_TEST_FAILED(test_function, i) printf("test named " # test_function " number %u"  RED " failed\n" RESET, i)
+#define RANDOM_TEST_SUCCEEDED(test_function, i) printf("test named " # test_function " number %u"  GREEN " succeeded\n" RESET, i)
+#define RUN_RANDOM_TEST(test_function, amount) for (size_t i = 0; i < amount; i++){if(!test_function()) RANDOM_TEST_FAILED(test_function, i); else RANDOM_TEST_SUCCEEDED(test_function, i);}
 
 #endif //__TESTS_UTILS_H__

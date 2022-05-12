@@ -1,10 +1,10 @@
 
-extern void RunMinHeapTests();
-extern void RunQuickSortTests();
+extern void MinHeapTests();
+extern void QuickSortTests();
 
 int main()
 {
-    RunMinHeapTests();
-    RunQuickSortTests();
+    MinHeapTests();
+    QuickSortTests();
     return 0;
 }

@@ -91,7 +91,7 @@ bool MinHeap::MinHeap<T, max_size>::MinHeapify(size_t uneven_head)
 
     if (smallest_index != uneven_head)
     {
-        if (!SortUtils::SwapValues(&array[smallest_index], &array[uneven_head]))
+        if (!SortUtils::SwapValues(&m_values[smallest_index], &m_values[uneven_head]))
         {
             return false;
         }

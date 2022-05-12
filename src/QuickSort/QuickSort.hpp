@@ -2,11 +2,12 @@
 #define __QUICK_SORT_HPP__
 
 #include "inc/QuickSort/QuickSort.h"
+#include "inc/SortUtils.h"
 
 template <typename T>
-bool QuickSort<T>::QuickSort(T* values_array, size_t start_index, size_t end_index)
+bool QuickSort::QuickSort(T* values_array, size_t start_index, size_t end_index)
 {
-    if (T == nullptr || start_index > end_index)
+    if (values_array == nullptr || start_index > end_index)
     {
         return false;
     }
@@ -22,22 +23,28 @@ bool QuickSort<T>::QuickSort(T* values_array, size_t start_index, size_t end_ind
         return false;
     }
 
-    if (!QuickSort(values_array, start_index, pivot_new_index - 1))
+    if (pivot_new_index != start_index) 
     {
-        return false;
+        if (!QuickSort(values_array, start_index, pivot_new_index - 1))
+        {
+            return false;
+        }
     }
-    if (!QuickSort(values_array, pivot_new_index + 1, end_index))
+    if (pivot_new_index != end_index)
     {
-        return false;
+        if (!QuickSort(values_array, pivot_new_index + 1, end_index))
+        {
+            return false;    
+        }
     }
 
     return true;
 }
 
 template <typename T>
-size_t QuickSort<T>::Partition(T* values_array, size_t start_index, size_t end_index)
+size_t QuickSort::Partition(T* values_array, size_t start_index, size_t end_index)
 {
-    static constexpr size_t ERROR_VALUE = end_index + 1;
+    const size_t ERROR_VALUE = end_index + 1;
     if (values_array == nullptr || start_index > end_index)
     {
         return ERROR_VALUE;
@@ -52,9 +59,9 @@ size_t QuickSort<T>::Partition(T* values_array, size_t start_index, size_t end_i
     size_t pivot_new_index = start_index;
     for (size_t i = start_index; i < end_index; i++)
     {
-        if (values_array[i] <= x)
+        if (values_array[i] <= pivot_value)
         {
-            if (!SwapValues(&values_array[i], &values_array[pivot_new_index]))
+            if (!SortUtils::SwapValues(&values_array[i], &values_array[pivot_new_index]))
             {
                 return ERROR_VALUE;
             }
@@ -62,7 +69,7 @@ size_t QuickSort<T>::Partition(T* values_array, size_t start_index, size_t end_i
         }
     }
 
-    if (!SwapValues(&values_array[pivot_new_index], &values_array[end_index]))
+    if (!SortUtils::SwapValues(&values_array[pivot_new_index], &values_array[end_index]))
     {
         return ERROR_VALUE;
     }

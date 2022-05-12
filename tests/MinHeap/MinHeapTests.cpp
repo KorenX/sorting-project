@@ -20,22 +20,22 @@ size_t GetMinimumIndex(T* array, size_t count)
     return min_index;
 }
 
-void RunMinHeapTests();
+void MinHeapTests();
 bool MinHeapTest_IsEmptyBasicUse();
 bool MinHeapTest_IsFullBasicUse();
 bool MinHeapTest_InitialHeadIsSmallest();
 bool MinHeapTest_ValuesFitMinHeapStruct();
 bool MinHeapTest_ExtractMinAlwaysRemovesMin();
 
-void RunMinHeapTests()
+void MinHeapTests()
 {
     srand(time(0));
     RUN_TEST(MinHeapTest_IsEmptyBasicUse);
     RUN_TEST(MinHeapTest_IsFullBasicUse);
-    RUN_TEST(MinHeapTest_InitialHeadIsSmallest);
-    RUN_TEST(MinHeapTest_ValuesFitMinHeapStruct);
-    RUN_TEST(MinHeapTest_ExtractMinAlwaysRemovesMin);
-    FINISH_RUNNING_TESTS;
+    RUN_RANDOM_TEST(MinHeapTest_InitialHeadIsSmallest, RANDOM_TESTS_AMOUNT);
+    RUN_RANDOM_TEST(MinHeapTest_ValuesFitMinHeapStruct, RANDOM_TESTS_AMOUNT);
+    RUN_RANDOM_TEST(MinHeapTest_ExtractMinAlwaysRemovesMin, RANDOM_TESTS_AMOUNT);
+    FINISH_RUNNING_TESTS(MinHeapTests);
 }
 
 bool MinHeapTest_IsEmptyBasicUse()

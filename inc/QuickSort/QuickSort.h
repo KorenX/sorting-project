@@ -1,6 +1,8 @@
 #ifndef __QUICK_SORT_H__
 #define __QUICK_SORT_H__
 
+#include <stddef.h>
+
 namespace QuickSort
 {
     /**
@@ -14,7 +16,7 @@ namespace QuickSort
      * @return true if the function was successful, false otherwise.
      */
     template <typename T>
-    bool QuickSort(T* values_array, size_t start_index, size_t end_index)
+    bool QuickSort(T* values_array, size_t start_index, size_t end_index);
 
     /**
      * This function takes an unsorted array, and reorganizes it such that the last value will
@@ -28,9 +30,9 @@ namespace QuickSort
      * @return the new location of the last value of the array, in case of error return end_index + 1
      */
     template <typename T>
-    size_t Partition(T* values_array, size_t start_index, size_t end_index)
+    size_t Partition(T* values_array, size_t start_index, size_t end_index);
 }
 
-#include "src/QuickSort.hpp"
+#include "src/QuickSort/QuickSort.hpp"
 
 #endif //__QUICK_SORT_H__
