@@ -4,11 +4,13 @@
 
 bool QuickSortTests_ArrayIsSorted();
 bool QuickSortTests_PartitionGeneralUse();
+bool QuickSortTests_RandomizedPartitionGeneralUse();
 
 void QuickSortTests()
 {
     RUN_RANDOM_TEST(QuickSortTests_ArrayIsSorted, RANDOM_TESTS_AMOUNT)
     RUN_RANDOM_TEST(QuickSortTests_PartitionGeneralUse, RANDOM_TESTS_AMOUNT)
+    RUN_RANDOM_TEST(QuickSortTests_RandomizedPartitionGeneralUse, RANDOM_TESTS_AMOUNT)
     FINISH_RUNNING_TESTS(QuickSortTests);
 }
 
@@ -57,6 +59,32 @@ bool QuickSortTests_PartitionGeneralUse()
     for (size_t i = pivot_new_index + 1; i < ARRAY_SIZE; i++)
     {
         ASSERT_GT(arr[i], original_pivot);
+    }
+
+    TEST_END;
+}
+
+bool QuickSortTests_RandomizedPartitionGeneralUse()
+{
+    static constexpr size_t ARRAY_SIZE = 10;
+    static constexpr size_t VALUES_CAP = 1000;
+
+    int arr[ARRAY_SIZE] = {};
+    for (size_t i = 0; i < ARRAY_SIZE; i++)
+    {
+        arr[i] = rand() % VALUES_CAP;
+    }
+
+    size_t pivot_new_index = QuickSort::RandomizedPartition(arr, 0, ARRAY_SIZE - 1);
+    int pivot_value = arr[pivot_new_index];
+    for (size_t i = 0; i < pivot_new_index; i++)
+    {
+        ASSERT_LE(arr[i], pivot_value);
+    }
+
+    for (size_t i = pivot_new_index + 1; i < ARRAY_SIZE; i++)
+    {
+        ASSERT_GT(arr[i], pivot_value);
     }
 
     TEST_END;

@@ -77,4 +77,25 @@ size_t QuickSort::Partition(T* values_array, size_t start_index, size_t end_inde
     return pivot_new_index;
 }
 
+template <typename T>
+size_t QuickSort::RandomizedPartition(T* values_array, size_t start_index, size_t end_index)
+{
+    const size_t ERROR_VALUE = end_index + 1;
+    if (values_array == nullptr || start_index > end_index)
+    {
+        return ERROR_VALUE;
+    }
+
+    size_t random_range = end_index - start_index + 1;
+    size_t random_pivot = (rand() % random_range) + start_index;
+
+    if (!SortUtils::SwapValues(&values_array[random_pivot], &values_array[end_index]))
+    {
+        return ERROR_VALUE;
+    }
+
+    // Now the randomly selected pivot is in the last index, so we can just call Partition.
+    return Partition(values_array, start_index, end_index);
+}
+
 #endif //__QUICK_SORT_HPP__
