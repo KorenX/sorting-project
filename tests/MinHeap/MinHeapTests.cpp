@@ -43,7 +43,8 @@ bool MinHeapTest_IsEmptyBasicUse()
 
     MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
 
-    ASSERT_TRUE(mheap.IsEmpty());
+    bool res = mheap.IsEmpty();
+    ASSERT_TRUE(res);
     TEST_END;
 }
 
@@ -59,8 +60,10 @@ bool MinHeapTest_IsFullBasicUse()
     }
 
     MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
-    ASSERT_TRUE(mheap.BuildMinHeap(arr, ARRAY_SIZE));
-    ASSERT_TRUE(mheap.IsFull());
+    bool res = mheap.BuildMinHeap(arr, ARRAY_SIZE);
+    ASSERT_TRUE(res);
+    res = mheap.IsFull();
+    ASSERT_TRUE(res);
     TEST_END;
 }
 
@@ -76,9 +79,11 @@ bool MinHeapTest_InitialHeadIsSmallest()
     }
 
     MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
-    ASSERT_TRUE(mheap.BuildMinHeap(arr, ARRAY_SIZE));
+    bool res = mheap.BuildMinHeap(arr, ARRAY_SIZE);
+    ASSERT_TRUE(res);
     int min = 0;
-    ASSERT_TRUE(mheap.ExtractMin(min));
+    res = mheap.ExtractMin(min);
+    ASSERT_TRUE(res);
     
     ASSERT_EQ(min, arr[GetMinimumIndex(arr, ARRAY_SIZE)]);
     TEST_END;
@@ -96,7 +101,8 @@ bool MinHeapTest_ValuesFitMinHeapStruct()
     }
 
     MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
-    ASSERT_TRUE(mheap.BuildMinHeap(arr, ARRAY_SIZE));
+    bool res = mheap.BuildMinHeap(arr, ARRAY_SIZE);
+    ASSERT_TRUE(res);
     for (size_t i = 0; i < ARRAY_SIZE/2; i++)
     {
         if (LEFT_CHILD(i) < ARRAY_SIZE)
@@ -125,12 +131,14 @@ bool MinHeapTest_ExtractMinAlwaysRemovesMin()
     }
 
     MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
-    ASSERT_TRUE(mheap.BuildMinHeap(arr, ARRAY_SIZE));
+    bool res = mheap.BuildMinHeap(arr, ARRAY_SIZE);
+    ASSERT_TRUE(res);
     
     for (size_t i = 0; i < ARRAY_SIZE; i++)
     {
         int min = 0;
-        ASSERT_TRUE(mheap.ExtractMin(min));
+        res = mheap.ExtractMin(min);
+        ASSERT_TRUE(res);
         
         size_t min_index = GetMinimumIndex(arr, ARRAY_SIZE);
         ASSERT_EQ(min, arr[min_index]);
@@ -138,7 +146,8 @@ bool MinHeapTest_ExtractMinAlwaysRemovesMin()
         arr[min_index] = VALUES_CAP;
     }
 
-    ASSERT_TRUE(mheap.IsEmpty());
+    res = mheap.IsEmpty();
+    ASSERT_TRUE(res);
 
     TEST_END;
 }
