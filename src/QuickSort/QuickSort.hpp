@@ -42,6 +42,50 @@ bool QuickSort::QuickSort(T* values_array, size_t start_index, size_t end_index)
 }
 
 template <typename T>
+bool QuickSort::RandomizedSelect(T* values_array, size_t start_index, size_t end_index, size_t index_to_find)
+{
+    if (values_array == nullptr || start_index > end_index || index_to_find > end_index)
+    {
+        return false;
+    }
+
+    if (start_index == end_index)
+    {
+        if (index_to_find == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    size_t pivot_new_index = RandomizedPartition(values_array, start_index, end_index);
+    if (pivot_new_index > end_index)
+    {
+        return false;
+    }
+
+    size_t smaller_values_amount = pivot_new_index - start_index;
+    if (smaller_values_amount == index_to_find)
+    {
+        return true;
+    }
+    else if (smaller_values_amount > index_to_find)
+    {
+        return RandomizedSelect(values_array, start_index, pivot_new_index - 1, index_to_find);
+    }
+    else
+    {
+        return RandomizedSelect(values_array, pivot_new_index + 1, end_index, index_to_find - smaller_values_amount - 1);
+    }
+
+    // Should never get here
+    return false;
+}
+
+template <typename T>
 size_t QuickSort::Partition(T* values_array, size_t start_index, size_t end_index)
 {
     const size_t ERROR_VALUE = end_index + 1;
