@@ -58,6 +58,20 @@ namespace QuickSort
      */
     template <typename T>
     size_t RandomizedPartition(T* values_array, size_t start_index, size_t end_index);
+    
+    /**
+     * Returns the amount of value comparisons made since last reset
+     *
+     * @returns the amount of value comparisons
+     */
+    size_t GetComparisonCounter();
+
+    /**
+     * Resets the amount of value comparisons made to 0
+     */
+    void ResetComparisonCounter();
+    
+    static size_t comparison_counter = 0;
 }
 
 #include "src/QuickSort/QuickSort.hpp"

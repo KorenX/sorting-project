@@ -6,6 +6,8 @@ bool QuickSortTests_ArrayIsSorted();
 bool QuickSortTests_PartitionGeneralUse();
 bool QuickSortTests_RandomizedPartitionGeneralUse();
 bool QuickSortTests_RandomizedSelectGeneralUse();
+bool QuickSortTest_GetComparisonCounterBasicUse();
+bool QuickSortTest_ResetComparisonCounterBasicUse();
 
 void QuickSortTests()
 {
@@ -13,7 +15,8 @@ void QuickSortTests()
     RUN_RANDOM_TEST(QuickSortTests_PartitionGeneralUse, RANDOM_TESTS_AMOUNT)
     RUN_RANDOM_TEST(QuickSortTests_RandomizedPartitionGeneralUse, RANDOM_TESTS_AMOUNT)
     RUN_RANDOM_TEST(QuickSortTests_RandomizedSelectGeneralUse, RANDOM_TESTS_AMOUNT)
-    RUN_TEST(QuickSortTests_RandomizedSelectGeneralUse)
+    RUN_RANDOM_TEST(QuickSortTest_GetComparisonCounterBasicUse, RANDOM_TESTS_AMOUNT)
+    RUN_RANDOM_TEST(QuickSortTest_ResetComparisonCounterBasicUse, RANDOM_TESTS_AMOUNT)
     FINISH_RUNNING_TESTS(QuickSortTests);
 }
 
@@ -121,5 +124,28 @@ bool QuickSortTests_RandomizedSelectGeneralUse()
         ASSERT_GE(arr[i], pivot_value);
     }
 
+    TEST_END;
+}
+
+bool QuickSortTest_GetComparisonCounterBasicUse()
+{
+    static constexpr size_t VALUES_CAP = 100000;
+    
+    size_t random_value = rand() % VALUES_CAP;
+    QuickSort::comparison_counter = random_value;
+    size_t actual_value = QuickSort::GetComparisonCounter();
+    ASSERT_EQ(actual_value, random_value);
+    TEST_END;
+}
+
+bool QuickSortTest_ResetComparisonCounterBasicUse()
+{
+    static constexpr size_t VALUES_CAP = 100000;
+    
+    size_t random_value = rand() % VALUES_CAP;
+    QuickSort::comparison_counter = random_value;
+    QuickSort::ResetComparisonCounter();
+    size_t actual_value = QuickSort::GetComparisonCounter();
+    ASSERT_EQ(actual_value, 0);
     TEST_END;
 }
