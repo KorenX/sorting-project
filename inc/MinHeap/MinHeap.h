@@ -28,7 +28,7 @@ template <typename T, size_t max_size>
 class MinHeap
 {
 public:
-    MinHeap() : m_values_amount(0) {}
+    MinHeap() : m_values_amount(0), m_comparison_counter(0) {}
 
     /**
      * This function initializes the class from an array of T values
