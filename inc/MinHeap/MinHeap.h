@@ -63,6 +63,18 @@ public:
      */
     bool IsFull();
 
+    /**
+     * Returns the amount of value comparisons made since last reset
+     *
+     * @returns the amount of value comparisons
+     */
+    size_t GetComparisonCounter();
+
+    /**
+     * Resets the amount of value comparisons made to 0
+     */
+    void ResetComparisonCounter();
+
 #ifdef TESTING_BUILD
 public:
 #else
@@ -78,10 +90,9 @@ private:
      */
     bool MinHeapify(size_t uneven_head);
 
-
-
     T m_values[max_size];
     size_t m_values_amount;
+    size_t m_comparison_counter;
 };
 
 }
