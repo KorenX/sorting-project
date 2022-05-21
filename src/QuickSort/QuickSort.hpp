@@ -111,6 +111,8 @@ size_t QuickSort::Partition(T* values_array, size_t start_index, size_t end_inde
             }
             pivot_new_index++;
         }
+
+        comparison_counter++;
     }
 
     if (!SortUtils::SwapValues(&values_array[pivot_new_index], &values_array[end_index]))
@@ -140,6 +142,16 @@ size_t QuickSort::RandomizedPartition(T* values_array, size_t start_index, size_
 
     // Now the randomly selected pivot is in the last index, so we can just call Partition.
     return Partition(values_array, start_index, end_index);
+}
+
+size_t QuickSort::GetComparisonCounter()
+{
+    return comparison_counter;
+}
+
+void QuickSort::ResetComparisonCounter()
+{
+    comparison_counter = 0;
 }
 
 #endif //__QUICK_SORT_HPP__

@@ -17,6 +17,9 @@ if len(argv) < 2 or argv[1] not in CONFIGS:
 create_folder("compiled")
 create_folder("compiled/bin")
 
-if argv[1] == TEST_CONFIG:
+if argv[1] == MAIN_CONFIG:
+    print("building main program")
+    os.system("gcc src/main.cpp -I. -o compiled/bin/main.exe")
+elif argv[1] == TEST_CONFIG:
     print("building tests")
     os.system("gcc tests/TestsMain.cpp tests/MinHeap/MinHeapTests.cpp tests/QuickSort/QuickSortTests.cpp -I. -o compiled/bin/Tests.exe -DTESTING_BUILD")

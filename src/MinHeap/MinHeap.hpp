@@ -67,6 +67,18 @@ bool MinHeap::MinHeap<T, max_size>::IsFull()
 }
 
 template <typename T, size_t max_size>
+size_t MinHeap::MinHeap<T, max_size>::GetComparisonCounter()
+{
+    return m_comparison_counter;
+}
+
+template <typename T, size_t max_size>
+void MinHeap::MinHeap<T, max_size>::ResetComparisonCounter()
+{
+    m_comparison_counter = 0;
+}
+
+template <typename T, size_t max_size>
 bool MinHeap::MinHeap<T, max_size>::MinHeapify(size_t uneven_head)
 {
     size_t smallest_index = uneven_head;
@@ -79,14 +91,22 @@ bool MinHeap::MinHeap<T, max_size>::MinHeapify(size_t uneven_head)
         return false;
     }
 
-    if (left_child_index < m_values_amount && m_values[left_child_index] < m_values[smallest_index])
+    if (left_child_index < m_values_amount)
     {
-        smallest_index = left_child_index;
+        m_comparison_counter++;
+        if (m_values[left_child_index] < m_values[smallest_index])
+        {
+            smallest_index = left_child_index;
+        }
     }
 
-    if (right_child_index < m_values_amount && m_values[right_child_index] < m_values[smallest_index])
+    if (right_child_index < m_values_amount)
     {
-        smallest_index = right_child_index;
+        m_comparison_counter++;
+        if (m_values[right_child_index] < m_values[smallest_index])
+        {
+            smallest_index = right_child_index;
+        }
     }
 
     if (smallest_index != uneven_head)

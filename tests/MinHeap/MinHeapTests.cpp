@@ -25,6 +25,8 @@ bool MinHeapTest_IsFullBasicUse();
 bool MinHeapTest_InitialHeadIsSmallest();
 bool MinHeapTest_ValuesFitMinHeapStruct();
 bool MinHeapTest_ExtractMinAlwaysRemovesMin();
+bool MinHeapTest_GetComparisonCounterBasicUse();
+bool MinHeapTest_ResetComparisonCounterBasicUse();
 
 void MinHeapTests()
 {
@@ -33,6 +35,8 @@ void MinHeapTests()
     RUN_RANDOM_TEST(MinHeapTest_InitialHeadIsSmallest, RANDOM_TESTS_AMOUNT);
     RUN_RANDOM_TEST(MinHeapTest_ValuesFitMinHeapStruct, RANDOM_TESTS_AMOUNT);
     RUN_RANDOM_TEST(MinHeapTest_ExtractMinAlwaysRemovesMin, RANDOM_TESTS_AMOUNT);
+    RUN_RANDOM_TEST(MinHeapTest_GetComparisonCounterBasicUse, RANDOM_TESTS_AMOUNT);
+    RUN_RANDOM_TEST(MinHeapTest_ResetComparisonCounterBasicUse, RANDOM_TESTS_AMOUNT);
     FINISH_RUNNING_TESTS(MinHeapTests);
 }
 
@@ -149,5 +153,32 @@ bool MinHeapTest_ExtractMinAlwaysRemovesMin()
     res = mheap.IsEmpty();
     ASSERT_TRUE(res);
 
+    TEST_END;
+}
+
+bool MinHeapTest_GetComparisonCounterBasicUse()
+{
+    static constexpr size_t ARRAY_SIZE = 10;
+    static constexpr size_t VALUES_CAP = 100000;
+    
+    MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
+    size_t random_value = rand() % VALUES_CAP;
+    mheap.m_comparison_counter = random_value;
+    size_t actual_value = mheap.GetComparisonCounter();
+    ASSERT_EQ(actual_value, random_value);
+    TEST_END;
+}
+
+bool MinHeapTest_ResetComparisonCounterBasicUse()
+{
+    static constexpr size_t ARRAY_SIZE = 10;
+    static constexpr size_t VALUES_CAP = 100000;
+    
+    MinHeap::MinHeap<int, ARRAY_SIZE> mheap;
+    size_t random_value = rand() % VALUES_CAP;
+    mheap.m_comparison_counter = random_value;
+    mheap.ResetComparisonCounter();
+    size_t actual_value = mheap.GetComparisonCounter();
+    ASSERT_EQ(actual_value, 0);
     TEST_END;
 }
