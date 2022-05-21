@@ -12,16 +12,88 @@ static constexpr size_t MAX_SIZE_T_CHARS = 10;
 static constexpr char AUTO_OR_MANUAL_MODE[] = "Would you like to run the auto mode?\n";
 static constexpr char USER_ENTER_OWN_ARRAY_VALUES[] = "Would you like to enter your own values?\n";
 
+/**
+ * Get an input from the user which is a smaller integer than the value param.
+ * 
+ * @param value the value the input has to be larger than
+ * @param request_message the message to print to the user before getting user input
+ * @return size_t the value from the user
+ */
 size_t GetSmallerValue(size_t value, const char *request_message);
+
+/**
+ * Get an input from the user which is an answer to a yes/no question
+ * 
+ * @param request_message the yes/no question
+ * @return true if the user said yes
+ * @return false if the user said no
+ */
 bool GetYesNoValue(const char *request_message);
+
+/**
+ * Fills an array with values from the user
+ * 
+ * @param array the array to fill
+ * @param values_amount the amount of values to get as inputs
+ */
 void GetArrayValues(int *array, size_t values_amount);
+
+/**
+ * Fills an array with randomly generated values
+ * 
+ * @param array the array to fill
+ * @param values_amount the amount of values to randomly get
+ */
 void GetRandomArrayValues(int *array, size_t values_amount);
+
+/**
+ * Runs the code as requested in the question, with predetermined n and k values 
+ */
 void RunAutoSetup();
+
+/**
+ * Runs the code with user input, for one single use of the comparison module 
+ */
 void RunManualSetup();
+
+/**
+ * Runs a single use of the comparison modules with the passed arguments
+ * 
+ * @param array_size the amount of values to use (n in the question)
+ * @param to_sort_amount the amount of values to sort (k in the question)
+ * @param own_values should we get user inputs or random values (true for user input)
+ * @param verbose [DEFAULT-TRUE] should we print the sorted array in the end of the function
+ */
 void RunSingleSetup(size_t array_size, size_t to_sort_amount, bool own_values, bool verbose=true);
 
+/**
+ * Takes the given array, puts it into a temporary array, makes that array into a minimum heap,
+ * and extracts the head an amount of time equal to to_sort_amount
+ * 
+ * @param array the array to build the minheap from 
+ * @param array_size the amount of values in the array
+ * @param to_sort_amount the amount of values to extract from the head
+ * @return size_t the amount of value comparisons done through the whole run of the function
+ */
 size_t PerformMinHeapMethodSorting(int *array, size_t array_size, size_t to_sort_amount);
+
+/**
+ * Takes the given array, uses partition functions to get a subarray the size of to_sort_amount of
+ * the smallest numbers, and uses quicksort to sort that subarray
+ * 
+ * @param array the array to partition and sort
+ * @param array_size the amount of values in the array
+ * @param to_sort_amount the amount of values that needs to be partitioned and sorted
+ * @return size_t the amount of value comparisons done through the whole run of the function
+ */
 size_t PerformSelectQuickSortMethodSorting(int *array, size_t array_size, size_t to_sort_amount);
+
+/**
+ * Prints array values in order 
+ * 
+ * @param array the array to print
+ * @param array_size the amount of values in the array
+ */
 void PrintArray(int *array, size_t array_size);
 
 int main(int argc, const char *argv[])
