@@ -119,14 +119,19 @@ void RunAutoSetup()
     static constexpr size_t AMOUNT_OF_K_VALUES = 3;
     size_t n_values[AMOUNT_OF_N_VALUES] = {100, 200, 500, 1000};
     size_t k_values[AMOUNT_OF_K_VALUES] = {8, 50, 100};
+    
+    printf("\nstart running auto setup\n");
+    printf("------------------------------------\n");
     for (size_t i = 0; i < AMOUNT_OF_N_VALUES; i++)
     {
         for (size_t j = 0; j < AMOUNT_OF_K_VALUES; j++)
         {
             RunSingleSetup(n_values[i], k_values[j], false, false);
+            printf("------------------------------------\n");
         }
     }
-
+    
+    printf("------------------------------------\n");
     printf("\nfinished running auto setup\n");
 }
 
