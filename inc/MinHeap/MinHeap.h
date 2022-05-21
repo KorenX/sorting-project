@@ -57,7 +57,7 @@ public:
     bool IsEmpty();
 
     /**
-     * This function checks if the MinHeap is full (all of the slots a occupied)
+     * This function checks if the MinHeap is full (all of the slots are occupied)
      *
      * @returns true if the MinHeap is full, false otherwise
      */
