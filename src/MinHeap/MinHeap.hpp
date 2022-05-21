@@ -2,6 +2,7 @@
 #define __MIN_HEAP_HPP__
 
 #include "inc/MinHeap/MinHeap.h"
+#include "inc/SortUtils.h"
 
 template <typename T, size_t max_size>
 bool MinHeap::MinHeap<T, max_size>::BuildMinHeap(T* unsorted_array, size_t values_count)
@@ -90,28 +91,13 @@ bool MinHeap::MinHeap<T, max_size>::MinHeapify(size_t uneven_head)
 
     if (smallest_index != uneven_head)
     {
-        if (!SwapValues(smallest_index, uneven_head))
+        if (!SortUtils::SwapValues(&m_values[smallest_index], &m_values[uneven_head]))
         {
             return false;
         }
 
         return MinHeapify(smallest_index);
     }
-
-    return true;
-}
-
-template <typename T, size_t max_size>
-bool MinHeap::MinHeap<T, max_size>::SwapValues(size_t index1, size_t index2)
-{
-    if (index1 >= m_values_amount || index2 >= m_values_amount)
-    {
-        return false;
-    }
-
-    T swap_temp = m_values[index1];
-    m_values[index1] = m_values[index2];
-    m_values[index2] = swap_temp;
 
     return true;
 }
